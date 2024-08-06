@@ -1,8 +1,10 @@
-from .pokemon import Pokemon
-from .pokeball import BasePokeball, PokeBall, UltraBall, FastBall, HeavyBall
-from typing import Tuple
 import random
+from typing import Tuple
+
 import numpy as np
+
+from .pokeball import BasePokeball, FastBall, HeavyBall, PokeBall, UltraBall
+from .pokemon import Pokemon
 
 _POKEBALL = {
     "pokeball": lambda x: PokeBall(x),
@@ -54,7 +56,7 @@ def attempt_catch(
         noise_multiplier = 0
 
     capture_rate = round((numerator / denominator) / 256, 4) * noise_multiplier
-    if (capture_rate > 1):
+    if capture_rate > 1:
         capture_rate = 1
 
     return (random.uniform(0, 1) < capture_rate, capture_rate)

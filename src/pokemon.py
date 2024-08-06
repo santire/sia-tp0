@@ -1,7 +1,7 @@
+import json
+import math
 from enum import Enum
 from typing import NamedTuple, Tuple
-import math
-import json
 
 
 class Type(str, Enum):
@@ -103,7 +103,7 @@ class PokemonFactory:
     def create(
         self, name: str, level: int, status: StatusEffect, hp_percentage: float
     ) -> Pokemon:
-        if (hp_percentage < 0 or hp_percentage > 1):
+        if hp_percentage < 0 or hp_percentage > 1:
             raise ValueError("hp has to be value between 0 and 1")
         with open(self._src_file, "r") as c:
             pokemon_db = json.load(c)
